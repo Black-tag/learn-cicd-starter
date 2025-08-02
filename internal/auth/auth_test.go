@@ -52,7 +52,7 @@ func TestGetAPIKey(t *testing.T) {
 				req.Header.Set("Authorization", tt.headerValue)
 			}
 
-			// got, err := GetAPIKey(req.Header)
+			got, err := GetAPIKey(req.Header)
 
 			// Check error
 			if (err != nil) != (tt.wantErr != nil) || 
