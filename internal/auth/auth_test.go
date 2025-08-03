@@ -55,8 +55,8 @@ func TestGetAPIKey(t *testing.T) {
 			got, err := GetAPIKey(req.Header)
 
 			// Check error
-			if (err != nil) != (tt.wantErr != nil) || 
-			   (err != nil && err.Error() != tt.wantErr.Error()) {
+			if (err != nil) != (tt.wantErr != nil) ||
+				(err != nil && err.Error() != tt.wantErr.Error()) {
 				t.Errorf("GetAPIKey() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
