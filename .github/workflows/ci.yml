@@ -33,6 +33,15 @@ jobs:
       uses: actions/setup-go@v5
       with:
         go-version: "1.23.0"
+
+    - name: Cache Go modules
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/go/pkg/mod
+          ~/.cache/go-build
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+
       
     - name: Style1
       run: test -z $(go fmt ./...)
@@ -43,10 +52,4 @@ jobs:
     - name: check linting
       run: staticcheck ./...
 
-    - name: Cache Go modules
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/go/pkg/mod
-          ~/.cache/go-build
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+    
