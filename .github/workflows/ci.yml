@@ -26,8 +26,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    -  name: Check out code
-       uses: actions/checkout@v4
+    - name: Check out code
+      uses: actions/checkout@v4
 
     - name: Set up Go
       uses: actions/setup-go@v5
@@ -42,3 +42,11 @@ jobs:
       
     - name: check linting
       run: staticcheck ./...
+
+    - name: Cache Go modules
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/go/pkg/mod
+          ~/.cache/go-build
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
